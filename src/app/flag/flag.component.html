@@ -1,0 +1,29 @@
+
+<div class="container bg-secondary" id="fixed">
+
+<div class="row">
+    <div class="col-7">
+    <h3 class="labelColor">Score={{score}}</h3>
+</div>
+<div class="col-5">
+<h3 class="countdownFloat">
+    <countdown *ngIf="!mode" [config]="{leftTime:10}" (start)="onStart()" (finished)="onFinished()">Time Remaining: $!s!</countdown>
+</h3>
+</div>
+</div>
+    
+<div class="row flagMargin d-flex justify-content-center" >
+<span *ngIf="!mode" style="width:20em; line-height: 20em" class="flag-icon flag-icon-{{randomNationISOCode | lowercase}}"></span>
+</div>
+<div class="row">
+<button *ngIf="mode" (click)="next()">Start</button>
+<br>
+
+<button [ngClass]="{'btn':mode}" class="d-flex justify-content-center fixed w-25" *ngFor="let count of a;let ind=index" (click)="compare(ind)">
+    {{option[count]}}
+    </button>
+</div> 
+<div class="row"> 
+<h1 *ngIf="!mode">{{myGuess}}</h1>
+</div>
+</div>
